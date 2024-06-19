@@ -1,4 +1,5 @@
 Desenvolvendo um jogo de RPG como projeto de aprendizado da ferramenta GameMaker.
+Créditos dos assets utilizados: https://lukepolice.itch.io/pixelariumgrasslands
 
 12/06/2024
 ---Primeiro Cenário e animação básica do player---
