@@ -5,6 +5,9 @@ estado_idle = new estado();
 //Iniciando o estado walk
 estado_walk = new estado();
 
+//Iniciando o estado de attacl
+estado_attack = new estado();
+
 
 #region estado_idle
 //Estado idle precisa de um inicia
@@ -34,6 +37,13 @@ estado_idle.roda = function()
 	{
 		troca_estado(estado_walk);
 	}
+	
+	
+	//Condição para ir para estado de ataque
+	if(attack)
+	{	
+		troca_estado(estado_attack);
+	}
 }
 #endregion
 
@@ -41,6 +51,9 @@ estado_idle.roda = function()
 #region estado_walk
 estado_walk.inicia = function()
 {
+	
+	//Iniciando o estado de ataque
+	estado_attack = new estado();
 	
 	dir		= (point_direction(0,0, right - left, down - up) div 90);
 //Definindo a sprite
@@ -83,6 +96,45 @@ if(velh == 0 && velv == 0)
 	troca_estado(estado_idle);
 }
 
+
+if (attack){
+
+troca_estado(estado_attack);
+
+}
+
+}
+
+#endregion
+
+
+#region estado_ataque
+
+ estado_attack.inicia = function()
+{
+
+//Definindo a sprite
+sprite_index = spr_player_attack_side;
+image_index = 0;
+velh = 0;
+velv = 0;
+
+}
+
+
+//Configurando estado de attack
+estado_attack.roda = function()
+{
+	
+	var _vel_real = image_speed / game_get_speed(gamespeed_fps);
+//Saindo do ataque
+if(image_index >= image_number-0.2)
+{
+	//Indo para o estado de parado
+	troca_estado(estado_idle);
+
+}
+
 }
 
 #endregion
@@ -95,6 +147,8 @@ up = noone;
 down = noone;
 left = noone;
 right = noone;
+attack = noone;
+
 
 //Variaveis de movimento
 //Iniciando Parado
